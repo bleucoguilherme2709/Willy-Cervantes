@@ -1,0 +1,23 @@
+import TelegramBot from "node-telegram-bot-api";
+
+// substitua abaixo pelo SEU token entre aspas
+const TELEGRAM_TOKEN = "8237111147:AAHdPt1cRs2nh8chAXJyLCSilpWRChrT5OQ";
+
+const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
+
+bot.on("message", (msg) => {
+  const chatId = msg.chat.id;
+  const text = msg.text?.toLowerCase();
+
+  if (!text) return;
+
+  if (text.includes("oi") || text.includes("olá")) {
+    bot.sendMessage(chatId, "Oi! Eu sou o Willie Cervantes 🌿, seu assistente de cultivo!");
+  } else if (text.includes("ajuda")) {
+    bot.sendMessage(chatId, "Claro! Me diga o que você quer saber sobre suas plantas hoje?");
+  } else {
+    bot.sendMessage(chatId, `Você disse: "${msg.text}". Ainda estou aprendendo! 🌱`);
+  }
+});
+
+console.log("🤖 Willie Cervantes está rodando...");
